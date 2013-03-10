@@ -1,6 +1,7 @@
 # AppConfiguration
 
 [![Build Status](https://travis-ci.org/guidomb/app_configuration.png)](https://travis-ci.org/guidomb/app_configuration)
+[![Coverage Status](https://coveralls.io/repos/guidomb/app_configuration/badge.png?branch=master)](https://coveralls.io/r/guidomb/app_configuration)
 <a href="/github/guidomb/app_configuration/badges"><img alt="App_configuration" src="https://codeclimate.com/github/guidomb/app_configuration.png" style="position: relative; top: 4px"></a>
 
 TODO: Write a gem description
