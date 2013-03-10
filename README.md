@@ -1,5 +1,7 @@
 # AppConfiguration
 
+<a href="/github/guidomb/app_configuration/badges"><img alt="App_configuration" src="https://codeclimate.com/github/guidomb/app_configuration.png" style="position: relative; top: 4px"></a>
+
 TODO: Write a gem description
 
 ## Installation
