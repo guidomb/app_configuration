@@ -1,4 +1,5 @@
 require 'bundler/setup'
+require 'coveralls'
 
 require 'app_configuration'
 
@@ -10,6 +11,7 @@ module Helpers
 
 end
 
+Coveralls.wear!
 RSpec.configure do |config|
 
   config.include(Helpers)
