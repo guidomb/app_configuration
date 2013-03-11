@@ -3,7 +3,10 @@ module AppConfiguration
   module ConfigRegistry
    
     def for(config, &block)
-      @configs[config] = new(".#{config}.yml", &block)
+      @configs[config] = new(".#{config}.yml") do
+        prefix config
+        block.call if block
+      end
     end
 
     def [](config)
