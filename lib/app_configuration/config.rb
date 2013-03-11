@@ -11,6 +11,22 @@ module AppConfiguration
     optional_attr :use_env_variables, default: true
     optional_attr :prefix            
 
+    # Class Methods
+
+    class << self
+
+      def default_local_path=(default_local_path)
+        defaults[:base_local_path] = default_local_path
+      end
+
+      def default_global_path=(default_global_path)
+        defaults[:base_global_path] = default_global_path
+      end
+
+    end
+
+    # Instance Methods
+
     def initialize(config_file_name, &block)
       super() # Sets default values for optional attributes
       @config_file_name = config_file_name

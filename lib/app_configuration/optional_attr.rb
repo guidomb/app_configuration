@@ -7,6 +7,7 @@ module AppConfiguration
       def defaults
         @defaults ||= {}
       end
+      protected :defaults
 
       def optional_attr(attribute, options = {})
         define_method(attribute) do |value| 
@@ -22,7 +23,7 @@ module AppConfiguration
     module InstanceMethods
       
       def initialize
-        self.class.defaults.each do |attribute, value|
+        self.class.send(:defaults).each do |attribute, value|
           instance_variable_set("@#{attribute}", value)
         end
       end

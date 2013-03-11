@@ -4,16 +4,21 @@ describe AppConfiguration::Config do
   
   describe "#[]" do
 
-    let(:local_path)        { File.join(fixture_path, 'local') }
-    let(:global_path)       { File.join(fixture_path, 'global') }
+    before(:all) do
+      AppConfiguration::Config.default_local_path = File.join(fixture_path, 'local')
+      AppConfiguration::Config.default_global_path = File.join(fixture_path, 'global')
+    end
+
+    after(:all) do
+      AppConfiguration::Config.default_local_path = nil
+      AppConfiguration::Config.default_global_path = nil
+    end
 
     context "when there is only a global config file" do
 
       let(:config) do
-        global_path = File.join(fixture_path, 'global')
         AppConfiguration::Config.new('config.yml') do
           base_local_path ''
-          base_global_path global_path
           use_env_variables false
         end
       end
@@ -27,9 +32,7 @@ describe AppConfiguration::Config do
     context "when there is only a local config file" do
 
       let(:config) do
-        local_path = File.join(fixture_path, 'local')
         AppConfiguration::Config.new('config.yml') do
-          base_local_path local_path
           base_global_path ''
           use_env_variables false
         end
@@ -44,11 +47,7 @@ describe AppConfiguration::Config do
     context "when there are local and global config files" do
 
       let(:config) do
-        local_path = File.join(fixture_path, 'local')
-        global_path = File.join(fixture_path, 'global')
         AppConfiguration::Config.new('config.yml') do
-          base_local_path local_path
-          base_global_path global_path
           use_env_variables false
         end
       end
@@ -59,8 +58,6 @@ describe AppConfiguration::Config do
 
     end
 
-  end
-
     context "when environmental variables config parameters exists" do
 
       before(:each) do
@@ -70,11 +67,7 @@ describe AppConfiguration::Config do
       context "when use_env_variables is set to false" do
 
         let(:config) do
-          local_path = File.join(fixture_path, 'local')
-          global_path = File.join(fixture_path, 'global')
           AppConfiguration::Config.new('config.yml') do
-            base_local_path local_path
-            base_global_path global_path
             use_env_variables false
           end
         end
@@ -88,11 +81,7 @@ describe AppConfiguration::Config do
       context "when use_env_variables is set to true" do
       
         let(:config) do
-          local_path = File.join(fixture_path, 'local')
-          global_path = File.join(fixture_path, 'global')
           AppConfiguration::Config.new('config.yml') do
-            base_local_path local_path
-            base_global_path global_path
             use_env_variables true
           end
         end
@@ -108,11 +97,7 @@ describe AppConfiguration::Config do
           end
 
           let(:config) do
-            local_path = File.join(fixture_path, 'local')
-            global_path = File.join(fixture_path, 'global')
             AppConfiguration::Config.new('config.yml') do
-              base_local_path local_path
-              base_global_path global_path
               use_env_variables true
               prefix 'the_prefix'
             end
@@ -127,5 +112,7 @@ describe AppConfiguration::Config do
       end
 
     end
+
+  end
 
 end
