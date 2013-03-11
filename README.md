@@ -95,6 +95,13 @@ github.api_key
 
 In the previous example the name of the configuration file is assumed to be `.github.yml` and all the environmental variables
 will be prefixed with `GITHUB_`. You can change this behaviour by passing a configuration block to the `for` method.
+For example if you want to change the local path you can register the configuration as follows
+
+```ruby
+AppConfiguration.for :github do
+  base_local_path Rails.root
+end
+```
 
 ### Default values ###
 
