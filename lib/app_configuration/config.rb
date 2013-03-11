@@ -45,14 +45,9 @@ module AppConfiguration
       def config
         return @config if @config
 
-        @config = 
-          if File.exist?(local_config_path)
-            YAML.load_file(local_config_path)
-          elsif File.exist?(global_config_path)
-            YAML.load_file(global_config_path)
-          else
-            {}
-          end
+        @config = {}
+        @config.merge!(YAML.load_file(global_config_path)) if File.exist?(global_config_path)
+        @config.merge!(YAML.load_file(local_config_path)) if File.exist?(local_config_path)
         @config
       end
 
