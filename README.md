@@ -43,6 +43,39 @@ foo: 'This is the foo variable'
 bar: 'This is the bar variable'
 ```
 
+### Customize your configuration ###
+
+**AppConfiguration** can be customized to fit your needs. Here is an example
+
+```ruby
+config = AppConfiguration.new('.setup.yml') do
+  base_local_path '/usr/local'
+  base_global_path '/config'
+  use_env_variables true
+  prefix 'my_app'
+end
+```
+
+You can set the configuration file name by passing the name to the new method or you can use the `config_file_name`
+method inside the configuration block.
+
+ * `config_file_name` Sets the name of the config file. Default `.config.yml`.
+ * `base_local_path` Sets the base path for the local configuration file. If there is no config file in this path it will
+look in the global configuration path. Default `./`
+ * `base_global_path` Sets the base path for the global configuration file. Default `~/`
+ * `use_env_variables` Flag that activates the use of enviromental variable. Default `true`
+ * `prefix` A prefix to be appended when looking for environmental variables. For example if `prefix` is set to `my_app`,
+when the `foo` variable is fetched, the `MY_APP_FOO` environmental variable will be checked. 
+This is used to avoid name collitions. Default `nil`
+
+### Variable lookup ###
+
+TODO
+
+### Configuration registry ###
+
+TODO
+
 ## Contributing
 
 1. Fork it
