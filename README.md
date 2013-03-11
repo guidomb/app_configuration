@@ -70,11 +70,32 @@ This is used to avoid name collitions. Default `nil`
 
 ### Variable lookup ###
 
-TODO
+You can retrieve a variable from a `AppConfiguration::Config` object by doing
+
+```ruby
+foo = config.foo
+foo = config['foo']
+```
+
+Environmental variables will be checked first, adding the necesary prefix if provided. If there is no environmental
+variable, the local config file will be checked. If there is no local file or a value has not been defined for
+the given variable, the global config file will be checked. Otherwise it returns nil.
 
 ### Configuration registry ###
 
-TODO
+If you create a new config object by using `AppConfiguration.new`, then you must keep the reference to this configuration.
+Instead you can registers a configuration by using `AppConfiguration.for`. Then you can obtain a configuration by using
+`AppConfiguration[]`. For example
+
+```ruby
+AppConfiguration.for :github
+# ... Then somewhere else ...
+github = AppConfiguration[:github]
+github.api_key
+```
+
+In the previous example the name of the configuration file is assumed to be `.github.yml` and all the environmental variables
+will be prefixed with `GITHUB_`. You can change this behaviour by passing a configuration block to the `for` method.
 
 ## Contributing
 
@@ -83,6 +104,9 @@ TODO
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+Please add specs for all new features. If you find a bug and an spec probing that the bug exists and in a separate commit
+add the bug fix.
 
 ## License
 
