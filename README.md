@@ -4,7 +4,9 @@
 [![Coverage Status](https://coveralls.io/repos/guidomb/app_configuration/badge.png?branch=master)](https://coveralls.io/r/guidomb/app_configuration)
 <a href="/github/guidomb/app_configuration/badges"><img alt="App_configuration" src="https://codeclimate.com/github/guidomb/app_configuration.png" style="position: relative; top: 4px"></a>
 
-TODO: Write a gem description
+**AppConfiguration** is a very simple gem that helps you configure your Ruby applications. It was extracted from a Rails project
+but it also can be used in non Rails projects. **AppConfiguration** uses YAML config files or environmental variales to set
+the configuration parameters.
 
 ## Installation
 
@@ -22,7 +24,24 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+**AppConfiguration** comes with great default values. So if you want to setup a new config all you need to do is 
+
+```ruby
+config = AppConfiguration.new
+my_configurable_variable = config.foo
+my_other_variable = config['bar']
+```
+
+By default, when getting the variable `foo` **AppConfiguration** will look for the environmental variable `FOO`.
+If it cannot find it, **AppConfiguration** will look for the `.config.yml` file in the current working directory. 
+If there is no config file there, it will try to find the `.config.yml` in your home directory.
+
+A possible `.config.yml` for this example could look like this
+
+```yaml
+foo: 'This is the foo variable'
+bar: 'This is the bar variable'
+```
 
 ## Contributing
 
