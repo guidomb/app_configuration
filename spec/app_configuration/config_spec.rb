@@ -2,17 +2,17 @@ require 'spec_helper'
 
 describe AppConfiguration::Config do
   
+  before(:all) do
+    AppConfiguration::Config.default_local_path = File.join(fixture_path, 'local')
+    AppConfiguration::Config.default_global_path = File.join(fixture_path, 'global')
+  end
+
+  after(:all) do
+    AppConfiguration::Config.default_local_path = nil
+    AppConfiguration::Config.default_global_path = nil
+  end
+
   describe "#[]" do
-
-    before(:all) do
-      AppConfiguration::Config.default_local_path = File.join(fixture_path, 'local')
-      AppConfiguration::Config.default_global_path = File.join(fixture_path, 'global')
-    end
-
-    after(:all) do
-      AppConfiguration::Config.default_local_path = nil
-      AppConfiguration::Config.default_global_path = nil
-    end
 
     context "when there is only a global config file" do
 
@@ -113,6 +113,14 @@ describe AppConfiguration::Config do
 
     end
 
+  end
+
+  describe 'dynamic method attributes' do
+    let(:config) { AppConfiguration::Config.new('config.yml') }
+
+    it 'defines dynamic method for all attributes' do
+      config.variable1.should eq 'local1'
+    end
   end
 
 end
