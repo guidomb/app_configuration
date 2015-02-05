@@ -12,8 +12,8 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{A gem to handle ruby application configurations}
   gem.homepage      = "http://github.com/guidomb/app_configuration"
 
-  gem.add_development_dependency "rspec"
-  gem.add_development_dependency "rake"
+  gem.add_development_dependency "rspec", "2.13.0"
+  gem.add_development_dependency "rake", "10.0.3"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
