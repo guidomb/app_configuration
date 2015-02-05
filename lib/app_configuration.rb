@@ -6,7 +6,7 @@ require "app_configuration/config"
 module AppConfiguration
   extend ConfigRegistry
 
-  def self.new(config_file_name, &block)
+  def self.new(config_file_name = nil, &block)
     Config.new(config_file_name, &block)
   end
 

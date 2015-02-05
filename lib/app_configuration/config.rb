@@ -9,7 +9,7 @@ module AppConfiguration
     optional_attr :base_local_path,   default: './'
     optional_attr :base_global_path,  default: '~/'
     optional_attr :use_env_variables, default: true
-    optional_attr :prefix            
+    optional_attr :prefix
 
     # Class Methods
 
@@ -27,17 +27,17 @@ module AppConfiguration
 
     # Instance Methods
 
-    def initialize(config_file_name, &block)
+    def initialize(config_file_name = nil, &block)
       super() # Sets default values for optional attributes
-      @config_file_name = config_file_name
+      @config_file_name = config_file_name if config_file_name
       self.instance_eval(&block) if block_given?
     end
 
-    def local_config_path 
+    def local_config_path
       @local_config_path ||= config_path(@base_local_path)
     end
 
-    def global_config_path 
+    def global_config_path
       @global_config_path ||= config_path(@base_global_path)
     end
 
